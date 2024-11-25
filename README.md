@@ -10,8 +10,20 @@ I would recommend, if possible, putting the spare on an isolated network, and ce
 
 
 
+**NB, you will have to make the following modifications to /etc/sshd/sshd_config for this to work as the backup and restore processes require root access. 
 
-Creating an ssh key and sharing it with the spare 
+- backup /etc/ssh/sshd_config
+- comment out the lines AllowGroups ssh-allow and DenyUsers root (to do this, prepend a #)
+- change PermitRootLogin to yes
+- restart sshd (systemctl restart sshd)
+- If you need to fail over to the spare, it is recommended to change these back - simply copy your backup sshd_config back into /etc/ssh/sshd_config, and restart sshd
+
+Creating an ssh key and sharing it with the spare - 
+
+
+
+
+
 ### **1. Open a Terminal (Command Line)**
 
 - **On Linux or macOS:** You can open the Terminal application.
