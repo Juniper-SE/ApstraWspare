@@ -5,6 +5,8 @@ A quick script to backup and Apstra instance, scp the backup to a warm spare, an
 -Download the apstrabackup.sh to /usr/local/bin/apstrabackup.sh
 -set it as executable (chmod +x /usr/local/bin/apstrabackup.sh
 - create a cron job to run it - this is an exacmple to run it once every 5 minutes.
+   - */5  * * * * apstrabackup.sh 2>/dev/null
+
 - To have this run automatically, you will need to create an ssh key for root on the warm spare - 
 - I would recommend, if possible, putting the spare on an isolated network, and certainly on a **different hypervisor** than where the main Apstra VM resides.
 **NB, you will have to make the following modifications to /etc/sshd/sshd_config for this to work as the backup and restore processes require root access. 
