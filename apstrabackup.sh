@@ -5,7 +5,7 @@ warmspare_user=root # Warm spare user - should be root if you'd like to run the 
 [[ -d /tmp/aosbackup/ ]] || mkdir /tmp/aosbackup/
 rm -rf /tmp/aosbackup/*
 
-/usr/sbin/aos_backup -o /tmp/aosbackup/
+/usr/sbin/aos_backup -o /tmp/aosbackup/  2>/dev/null
 # Find the most recently created directory
 new_directory=$(ls -dt /tmp/aosbackup/* | head -n 1)
 
@@ -21,5 +21,5 @@ rm -rf /tmp/aosbackup/*
 EOF
 
 scp -i /root/.ssh/id_rsa -r /tmp/aosbackup/*/* $warmspare_user@$warmspare_ip:/tmp/aosbackup/ #copy over the backup file
-ssh -i /root/.ssh/id_rsa  $warmspare_user@$warmspare_ip /tmp/aosbackup/aos_restore #run the restore
+ssh -i /root/.ssh/id_rsa  $warmspare_user@$warmspare_ip /tmp/aosbackup/aos_restore  2>/dev/null #run the restore
 
