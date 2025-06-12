@@ -14,7 +14,7 @@ new_directory=${new_directory%/}
 
 # Print the result (for testing/debugging)
 echo "The newest directory is: $new_directory"
-sed -i 's|/etc/init.d/aos start|#/etc/init.d/aos start|' ${new_directory%/}/aos_restore || { echo "sed command failed. Exiting."; exit 1; } # remove the aos init line from aos_restore
+sed -i 's|^/etc/init.d/aos start|#/etc/init.d/aos start|' ${new_directory%/}/aos_restore || { echo "sed command failed. Exiting."; exit 1; } # remove the aos init line from aos_restore
 ssh -i /root/.ssh/id_rsa  $warmspare_user@$warmspare_ip  << EOF
 [[ -d /tmp/aosbackup/ ]] || mkdir /tmp/aosbackup/
 rm -rf /tmp/aosbackup/*  
