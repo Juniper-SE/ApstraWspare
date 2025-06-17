@@ -38,7 +38,7 @@ echo "The newest directory is: $new_directory"
 
 # Modify the aos_restore file
 echo "Modifying the aos_restore file."
-sed -i 's|/etc/init.d/aos start|#/etc/init.d/aos start|' "${new_directory%/}/aos_restore" || { echo "sed command failed. Exiting."; exit 1; }
+sed -i 's|^/etc/init.d/aos start|#/etc/init.d/aos start|' "${new_directory%/}/aos_restore" || { echo "sed command failed. Exiting."; exit 1; }
 
 # SSH into the warm spare VM to prepare the directory
 echo "Connecting to warm spare VM to prepare directory."
